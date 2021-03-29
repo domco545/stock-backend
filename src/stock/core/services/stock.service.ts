@@ -26,4 +26,9 @@ export class StockService {
     const deleted = await this.stockRepository.deleteStock(id);
     return deleted;
   }
+
+  async ChangePrice(id: string, newPrice: number): Promise<Stock> {
+    const stock = await this.stockRepository.ChangePrice(id, newPrice);
+    return stock;
+  }
 }

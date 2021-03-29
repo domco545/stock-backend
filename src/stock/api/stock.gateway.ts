@@ -9,6 +9,7 @@ import { Socket } from 'socket.io';
 import { Stock } from '../core/models/stock.model';
 import { StockService } from '../core/services/stock.service';
 import { AllStocksDto } from './dtos/all-stocks.dto';
+import { ChangePriceDto } from './dtos/change-price.dto';
 import { StockDto } from './dtos/stock.dto';
 
 @WebSocketGateway()
@@ -18,18 +19,12 @@ export class StockGateway {
 
   @SubscribeMessage('price-change')
   async handlePriceChange(
-    @MessageBody() data: StockDto,
+    @MessageBody() data: ChangePriceDto,
     @ConnectedSocket() client: Socket,
   ) {
     try {
-      const stock: Stock = {
-        id: data.id,
-        name: data.name,
-        description: data.description,
-        price: data.price,
-      };
-
-      await this.stockService.updateStock(stock);
+      console.log('trying to change price')
+      await this.stockService.ChangePrice(data.id, data.newPrice);
       const dto: AllStocksDto = {
         stocks: await this.stockService.getAllStocks(),
       };

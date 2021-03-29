@@ -5,3 +5,6 @@ export const StockSchema = new mongoose.Schema({
     price: Number,
     description: String,
 });
+StockSchema.set('toJSON', {
+    virtuals: true
+});

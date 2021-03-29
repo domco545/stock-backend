@@ -39,4 +39,12 @@ export class StockRepository {
     const deleted = await this.stockDBModel.findByIdAndRemove(id);
     return deleted;
   }
+
+  async ChangePrice(id: string, newPrice: number): Promise<Stock> {
+    console.log()
+    const update = {price: newPrice};
+    const updatedStock = await this.stockDBModel.findByIdAndUpdate(id, update, {new: true});
+    console.log('updated', updatedStock)
+    return updatedStock;
+  }
 }
