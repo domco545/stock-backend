@@ -1,5 +1,5 @@
 import { Stock } from "src/stock/core/models/stock.model";
 
-export interface GetAllStocksDto{
+export interface AllStocksDto{
     stocks: Stock[];
 }
